@@ -1,0 +1,31 @@
+one:
+  user_id: 1
+  file: MyString
+  car_type_id: 1
+  car_model: MyString
+  color: MyString
+  board: MyString
+  location_city_id: 1
+  references: MyText
+  destination_city_id: 1
+  insured: false
+  service_type_id: 1
+  price: 1
+  operator_id: 1
+  crane: MyString
+
+two:
+  user_id: 1
+  file: MyString
+  car_type_id: 1
+  car_model: MyString
+  color: MyString
+  board: MyString
+  location_city_id: 1
+  references: MyText
+  destination_city_id: 1
+  insured: false
+  service_type_id: 1
+  price: 1
+  operator_id: 1
+  crane: MyString

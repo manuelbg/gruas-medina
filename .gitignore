@@ -2,3 +2,5 @@ log/development.log
 log/production.log
 log/server.log
 log/test.log
+db/schema.rb
+tmp/restart.txt

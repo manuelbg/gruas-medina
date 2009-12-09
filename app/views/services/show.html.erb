@@ -1,0 +1,64 @@
+<% title "Service" %>
+
+<p>
+  <strong>User:</strong>
+  <%=h @service.user_id %>
+</p>
+<p>
+  <strong>File:</strong>
+  <%=h @service.file %>
+</p>
+<p>
+  <strong>Car Type:</strong>
+  <%=h @service.car_type_id %>
+</p>
+<p>
+  <strong>Car Model:</strong>
+  <%=h @service.car_model %>
+</p>
+<p>
+  <strong>Color:</strong>
+  <%=h @service.color %>
+</p>
+<p>
+  <strong>Board:</strong>
+  <%=h @service.board %>
+</p>
+<p>
+  <strong>Location City:</strong>
+  <%=h @service.location_city_id %>
+</p>
+<p>
+  <strong>References:</strong>
+  <%=h @service.references %>
+</p>
+<p>
+  <strong>Destination City:</strong>
+  <%=h @service.destination_city_id %>
+</p>
+<p>
+  <strong>Insured:</strong>
+  <%=h @service.insured %>
+</p>
+<p>
+  <strong>Service Type:</strong>
+  <%=h @service.service_type_id %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%=h @service.price %>
+</p>
+<p>
+  <strong>Operator:</strong>
+  <%=h @service.operator_id %>
+</p>
+<p>
+  <strong>Crane:</strong>
+  <%=h @service.crane %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_service_path(@service) %> |
+  <%= link_to "Destroy", @service, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", services_path %>
+</p>

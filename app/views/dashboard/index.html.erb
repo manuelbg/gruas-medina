@@ -1,0 +1,5 @@
+<% if admin? %>
+	<%= render :partial => 'admin' %>
+<% else %>
+	<%= render :partial => 'user' %>
+<% end %>

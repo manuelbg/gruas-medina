@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  has_many :services
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
-
+  named_scope :no_admin, :conditions => ["role != 'admin'"]
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #

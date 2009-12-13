@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   
+  def index
+    @users = User.no_admin
+  end
+  
+  def show
+    @user = User.find(params[:id])
+  end
 
   # render new.rhtml
   def new
@@ -8,20 +15,39 @@ class UsersController < ApplicationController
   end
  
   def create
-    logout_keeping_session!
     @user = User.new(params[:user])
-    success = @user && @user.save
-    if success && @user.errors.empty?
-            # Protects against session fixation attacks, causes request forgery
-      # protection if visitor resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset session
-      self.current_user = @user # !! now logged in
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+    @user.role = 'user'
+    if @user.save
+      flash[:notice] = "El cliente se creó con exito."
+      redirect_to users_path
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "Ocurrio un error al crear al cliente."
       render :action => 'new'
     end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "El cliente se modificó con exito."
+      redirect_to users_path
+    else
+      flash[:error]  = "Ocurrio un error al modificar al cliente."
+      render :action => 'edit'
+    end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = "El cliente se eliminó con exito."
+    else
+      flash[:error]  = "Ocurrio un error al eliminar al cliente."
+    end
+    redirect_to users_path
   end
 end

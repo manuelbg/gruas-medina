@@ -1,8 +1,7 @@
-<h1>Nuevo Cliente</h1>
-<% @user.password = @user.password_confirmation = nil %>
+<h1>Editar Cliente</h1>
 
 <%= error_messages_for :user %>
-<% form_for :user, :url => users_path do |f| -%>
+<% form_for @user do |f| -%>
 <p><%= label_tag 'login', 'Usuario' %><br/>
 <%= f.text_field :login %></p>
 
@@ -15,8 +14,5 @@
 <p><%= label_tag 'password', 'Contraseña' %><br/>
 <%= f.password_field :password %></p>
 
-<p><%= label_tag 'password_confirmation', 'Confirmar Contraseña' %><br/>
-<%= f.password_field :password_confirmation %></p>
-
-<p><%= submit_tag 'Crear' %></p>
+<p><%= submit_tag 'Guardar' %></p>
 <% end -%>

@@ -2,37 +2,35 @@
 
 <table>
   <tr>
-    <th>User</th>
-    <th>File</th>
-    <th>Car Type</th>
-    <th>Car Model</th>
+    <th>Grua</th>
+    <th>Operador</th>
+		<th>Asistencia</th>
+    <th>Exp.</th>
+    <th>Marca</th>
+    <th>Tipo</th>
+    <th>Modelo</th>
     <th>Color</th>
-    <th>Board</th>
-    <th>Location City</th>
-    <th>References</th>
-    <th>Destination City</th>
-    <th>Insured</th>
-    <th>Service Type</th>
-    <th>Price</th>
-    <th>Operator</th>
-    <th>Crane</th>
+    <th>Estatus</th>
+    <th>F. Alta</th>
+    <th>F. Cont</th>
+    <th>F. Fin</th>
+    <th>Acciones</th>
   </tr>
   <% for service in @services %>
     <tr>
-      <td><%=h service.user_id %></td>
-      <td><%=h service.file %></td>
-      <td><%=h service.car_type_id %></td>
+    	<td><%=h service.crane %></td>
+      <td><%=h service.operator_id %></td>
+      <td><%=h service.user.name %></td>
+			<td><%=h service.file %></td>
+      <td><%=h service.car_brand.name %></td>
+      <td><%=h service.car_type.name %></td>
       <td><%=h service.car_model %></td>
       <td><%=h service.color %></td>
-      <td><%=h service.board %></td>
-      <td><%=h service.location_city_id %></td>
-      <td><%=h service.references %></td>
-      <td><%=h service.destination_city_id %></td>
-      <td><%=h service.insured %></td>
+      <td><%=h service.status %></td>
+      <td><%=h service.created_at %></td>
+      <td><%=h service.id %></td>
+      <td><%=h service.id %></td>
       <td><%=h service.service_type_id %></td>
-      <td><%=h service.price %></td>
-      <td><%=h service.operator_id %></td>
-      <td><%=h service.crane %></td>
       <td><%= link_to "Show", service %></td>
       <td><%= link_to "Edit", edit_service_path(service) %></td>
       <td><%= link_to "Destroy", service, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -40,4 +38,4 @@
   <% end %>
 </table>
 
-<p><%= link_to "New Service", new_service_path %></p>
+<p><%= link_to "Nuevo Expediente", new_service_path %></p>

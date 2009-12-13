@@ -1,16 +1,20 @@
 <% form_for @service do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :file %><br />
+    <%= f.label :file, 'Expediente' %><br />
     <%= f.text_field :file %>
   </p>
+	<p>
+    Marca<br />
+    <%= select :car_brand, :id, [['Selecciona',0]] + CarBrand.all.collect {|o| [o.name, o.id]} %>
+  </p>
+	<p>
+		<%= f.label :car_type_id, 'Tipo' %><br />
+		<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] %>
+	</p>
   <p>
-    <%= f.label :car_type_id %><br />
-    <%= f.text_field :car_type_id %>
+    <%= f.label :user_id, 'Usuario' %><br />
+    <%= f.select :user_id, [['Selecciona',0]] + User.no_admin.collect {|o| [o.name, o.id]} %>
   </p>
   <p>
     <%= f.label :car_model %><br />

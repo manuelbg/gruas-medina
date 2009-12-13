@@ -1,7 +1,7 @@
 body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 a img {
@@ -18,32 +18,124 @@ a {
   overflow: hidden;
 }
 
-#container {
-  width: 75%;
+#wrapper {
+  width: 870px;
   margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
+	margin-top: 20px;
+	background-color: #FFF;
+  padding: 0;
   border: solid 1px black;
-  margin-top: 20px;
+	position: relative;
 }
 
-#flash_notice, #flash_error {
+#wrapper #header {
+	height: 120px;
+	border-bottom: 1px #000 solid;
+}
+
+#wrapper #content {
+	clear: both;
+	margin: 10px;
+}
+
+#menu {
+	padding: 0;
+	margin: 0;
+	width: 947px;
+	font-size: 12px;
+}
+
+#menu ul {
+	width: 947px;
+	padding: 0;
+	margin: 0;
+}
+
+#menu ul li {
+	padding: 4px;
+	margin: 0 -1px 0 0;
+	list-style-type: none;
+	float: left;
+	border: 1px #ddd solid;
+	background: #0093DD;
+}
+
+#menu ul li a {
+	top: 0;
+	padding: 5px 8px;
+	text-decoration: none;
+	color: #fff;
+}
+
+#menu ul li:hover {
+	background: #003399;
+}
+
+#users .user:nth-child(2n+2) .field {
+	background: #ccc;
+	border: 1px #ddd solid;
+}
+
+#users .name,  #users .email{
+	width: 200px;
+	height: 18px;
+}
+
+#users .actions {
+	width: 80px;
+	height: 18px;
+}
+
+#users .title {
+	font-weight: bold;
+	text-align: center;
+	background: #000;
+	color: #fff;
+}
+
+#users .title,  #users .user .field{
+	float: left;
+	padding: 4px;
+	border: 1px #ccc solid;
+	margin: -1px 0 0 -1px;
+}
+
+#Flash {
   padding: 5px 8px;
   margin: 10px 0;
 }
 
-#flash_notice {
+#Flash.flash_notice {
   background-color: #CFC;
   border: solid 1px #6C6;
 }
 
-#flash_error {
+#Flash.flash_error {
   background-color: #FCC;
   border: solid 1px #C66;
 }
 
+#Flash.flash_info {
+	background: #FEF5DA no-repeat 2px 2px;
+	border: 1px solid #FCEBB4;
+	color: #3E1F02;
+}
+
 .fieldWithErrors {
   display: inline;
+}
+
+div#login {
+	width: 300px;
+	margin: 30px auto;
+	padding: 20px;
+	border: 1px #ccc solid;
+	font-size: 12px;
+}
+
+#logo_login {
+	display: block;
+	margin: 0 auto;
 }
 
 #errorExplanation {
@@ -75,7 +167,21 @@ a {
   margin: 2px 24px;
 }
 
+
+
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
 }

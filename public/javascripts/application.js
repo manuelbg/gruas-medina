@@ -3,5 +3,5 @@ $(document).ready(function(){
 	.animate({opacity: 1.0}, 7000)
 	.slideToggle('slow', function() {
 		$(this).remove();
-	})
+	});
 });

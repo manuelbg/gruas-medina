@@ -12,13 +12,13 @@
   </head>
   <body>
     <div id="wrapper">
-      <div id="header">
-				<% if login_path? %>
-				<%= image_tag('logo_login.jpg', :id => 'logo_login') %>
-				<% else %>
+			<% if login_path? %>
+			<%= image_tag('logo_login.jpg', :id => 'logo_login') %>
+			<% else %>
+	    <div id="header">
 				<%= image_tag('logo.jpg') %>
-				<% end %>
 			</div>
+			<% end %>
 			<% if admin? %>
 			<div id="menu">
 				<ul>

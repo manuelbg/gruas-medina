@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :car_types
+  map.resources :car_types, :collection => {:like_options => :any}
 
   map.resources :car_brands
 

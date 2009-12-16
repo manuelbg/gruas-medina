@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
   named_scope :no_admin, :conditions => ["role != 'admin'"]
+  named_scope :admin, :conditions => ["role = 'admin'"]
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #

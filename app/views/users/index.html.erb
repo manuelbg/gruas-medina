@@ -1,19 +1,43 @@
 <% title "Clientes" %>
-<h1>Clientes</h1>
-
-<%= link_to 'Nuevo Cliente', new_user_path() %>
+<h1>Admins</h1>
+<%= link_to 'Nuevo Usuario', new_user_path() %>
 <div id="users">
 	<div class="name title">Nombre</div>
 	<div class="email title">E-Mail</div>
 	<div class="actions title" style="text-align: center">Acciones</div>
 	<div class="clear"></div>
-	<% @users.each do |user| %>
+	<% User.admin.each do |user| %>
 	<div class="user">
 		<div class="name field"><%= link_to user.name, user_path(user) %></div>
 		<div class="email field"><%= link_to user.email, user_path(user) %></div>
-		<div class="actions field" style="text-align: center"><%= link_to image_tag('edit_icon.png', :border => 0, :title => 'Editar'), edit_user_path(user) %> <%= link_to image_tag('delete_icon.png', :border => 0, :title => 'Eliminar'), user_path(user), :method => :delete, :confirm => '¿Estas seguro de eliminar a este usuario?' %></div>
+		<div class="actions field" style="text-align: center">
+			<% unless user == current_user %>
+			<%= link_to image_tag('del_admin_icon.png', :border => 0, :title => 'Hacerlo Usuario Normal'), user_path(user, 'user[role]' => 'user'), :method => :put %>
+			<%= link_to image_tag('edit_icon.png', :border => 0, :title => 'Editar'), edit_user_path(user) %>
+			<%= link_to image_tag('delete_icon.png', :border => 0, :title => 'Eliminar'), user_path(user), :method => :delete, :confirm => '¿Estas seguro de eliminar a este Usuario?' %>
+			<% end %>
+		</div>
 		<div class="clear"></div>
 	</div>
 	<% end %>
 </div>
-<%= link_to 'Nuevo Cliente', new_user_path() %>
+<h1>Clientes</h1>
+<%= link_to 'Nuevo Usuario', new_user_path() %>
+<div id="users">
+	<div class="name title">Nombre</div>
+	<div class="email title">E-Mail</div>
+	<div class="actions title" style="text-align: center">Acciones</div>
+	<div class="clear"></div>
+	<% User.no_admin.each do |user| %>
+	<div class="user">
+		<div class="name field"><%= link_to user.name, user_path(user) %></div>
+		<div class="email field"><%= link_to user.email, user_path(user) %></div>
+		<div class="actions field" style="text-align: center">
+			<%= link_to image_tag('add_admin_icon.png', :border => 0, :title => 'Hacerlo Administrador'), user_path(user, 'user[role]' => 'admin'), :method => :put %>
+			<%= link_to image_tag('edit_icon.png', :border => 0, :title => 'Editar'), edit_user_path(user) %>
+			<%= link_to image_tag('delete_icon.png', :border => 0, :title => 'Eliminar'), user_path(user), :method => :delete, :confirm => '¿Estas seguro de eliminar a este cliente?' %>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<% end %>
+</div>

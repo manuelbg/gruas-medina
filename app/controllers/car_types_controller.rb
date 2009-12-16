@@ -41,4 +41,9 @@ class CarTypesController < ApplicationController
     flash[:notice] = "Successfully destroyed car type."
     redirect_to car_types_url
   end
+  
+  def like_options
+    @car_types = CarType.find(:all, :conditions => ["car_brand_id = ?", params[:car_brand_id]])
+    render :layout => 'ajax'
+  end
 end

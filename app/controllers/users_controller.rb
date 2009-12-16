@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  
+ 
   def index
-    @users = User.no_admin
+    @users = User.all
   end
   
   def show

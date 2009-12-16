@@ -17,7 +17,7 @@
     <%= f.select :user_id, [['Selecciona',0]] + User.no_admin.collect {|o| [o.name, o.id]} %>
   </p>
   <p>
-    <%= f.label :car_model %><br />
+    <%= f.label :car_model, 'Modelo' %><br />
     <%= f.text_field :car_model %>
   </p>
   <p>
@@ -25,40 +25,45 @@
     <%= f.text_field :color %>
   </p>
   <p>
-    <%= f.label :board %><br />
+    <%= f.label :board, 'Placas' %><br />
     <%= f.text_field :board %>
   </p>
   <p>
-    <%= f.label :location_city_id %><br />
+    <%= f.label :location_city_id, 'Ubicaci&oacute;n' %><br />
     <%= f.text_field :location_city_id %>
   </p>
   <p>
-    <%= f.label :references %><br />
-    <%= f.text_area :references %>
+    <%= f.label :references, 'Referencias' %><br />
+    <%= f.text_area :references, :cols => 50, :rows => 5 %>
   </p>
   <p>
-    <%= f.label :destination_city_id %><br />
+    <%= f.label :destination_city_id, 'Destino' %><br />
     <%= f.text_field :destination_city_id %>
   </p>
   <p>
-    <%= f.label :insured %><br />
-    <%= f.check_box :insured %>
+    <%= f.label :insured, 'Asegurado' %><br />
+    <%= f.text_field :insured %>
   </p>
   <p>
-    <%= f.label :service_type_id %><br />
+    <%= f.label :service_type_id, 'Servicio' %><br />
     <%= f.text_field :service_type_id %>
   </p>
   <p>
-    <%= f.label :price %><br />
+    <%= f.label :price, 'Precio' %><br />
     <%= f.text_field :price %>
   </p>
   <p>
-    <%= f.label :operator_id %><br />
+    <%= f.label :operator_id, 'Operador' %><br />
     <%= f.text_field :operator_id %>
   </p>
   <p>
-    <%= f.label :crane %><br />
+    <%= f.label :crane, 'Grua' %><br />
     <%= f.text_field :crane %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
+<script type="text/javascript" charset="utf-8">
+	$("#car_brand_id").change(function() {
+		$("#service_car_type_id").load('/car_types/like_options', {car_brand_id: $("#car_brand_id option:selected").attr('value'), authenticity_token: '<%= form_authenticity_token %>'});
+	});
+</script>

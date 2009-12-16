@@ -11,8 +11,11 @@
 <p><%= label_tag 'email', 'E-Mail' %><br/>
 <%= f.text_field :email %></p>
 
-<p><%= label_tag 'password', 'Contraseña' %><br/>
+<p><%= label_tag 'password', 'Nueva Contraseña' %><br/>
 <%= f.password_field :password %></p>
+
+<p><%= label_tag 'password', 'Confirmar Nueva Contraseña' %><br/>
+<%= f.password_field :password_confirmation %></p>
 
 <p><%= submit_tag 'Guardar' %></p>
 <% end -%>

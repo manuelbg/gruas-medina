@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   before_filter :login_required
   
   def index
-    @services = Service.all
+    @services = Service.find(:all, :order => 'start_date DESC')
   end
   
   def show

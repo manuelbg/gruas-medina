@@ -1,85 +1,103 @@
-<% form_for @service do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :file, 'Expediente' %><br />
-    <%= f.text_field :file %>
-  </p>
-	<p>
-    Marca<br />
-    <% if @service.id.nil? %>
-			<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}) %>
-		<% else %>
-			<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}, @service.car_type.car_brand.id) %>
-		<% end %>
-  </p>
-	<p>
-		<%= f.label :car_type_id, 'Tipo' %><br />
-		<% if @service.id.nil? %>
-			<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] %>
-		<% else %>
-			<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] + CarType.find(:all, :conditions => {:car_brand_id => @service.car_type.car_brand.id}).collect {|o| [o.name, o.id]} %>
-		<% end %>
-	</p>
-  <p>
-    <%= f.label :user_id, 'Usuario' %><br />
-    <%= f.select :user_id, [['Selecciona',0]] + User.no_admin.collect {|o| [o.name, o.id]} %>
-  </p>
-  <p>
-    <%= f.label :car_model, 'Modelo' %><br />
-    <%= f.text_field :car_model %>
-  </p>
-  <p>
-    <%= f.label :color %><br />
-    <%= f.text_field :color %>
-  </p>
-  <p>
-    <%= f.label :board, 'Placas' %><br />
-    <%= f.text_field :board %>
-  </p>
-  <p>
-    <%= f.label :location_city_id, 'Ubicaci&oacute;n' %><br />
-    <%= f.text_field :location_city_id %>
-  </p>
-  <p>
-    <%= f.label :references, 'Referencias' %><br />
-    <%= f.text_area :references, :cols => 50, :rows => 5 %>
-  </p>
-  <p>
-    <%= f.label :destination_city_id, 'Destino' %><br />
-    <%= f.text_field :destination_city_id %>
-  </p>
-  <p>
-    <%= f.label :insured, 'Asegurado' %><br />
-    <%= f.text_field :insured %>
-  </p>
-  <p>
-    <%= f.label :service_type_id, 'Servicio' %><br />
-    <%= f.select :service_type_id, [['Selecciona',0]] + ServiceType.all.collect {|o| [o.name, o.id]} %>
-  </p>
-  <p>
-    <%= f.label :price, 'Precio' %><br />
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.label :operator_id, 'Operador' %><br />
-    <%= f.select :operator_id, [['Selecciona',0]] + Operator.all.collect {|o| [o.name, o.id]} %>
-  </p>
-  <p>
-    <%= f.label :crane_id, 'Grua' %><br />
-    <%= f.select :crane_id, [['Selecciona',0]] + Crane.all.collect {|o| [o.name, o.id]} %>
-  </p>
-	<p>
-    <%= f.label :contact_date, 'Fecha de Contacto' %><br />
-    <%= f.text_field :contact_date, :class => 'date' %>
-  </p>
-	<p>
-    <%= f.label :end_date, 'Fin del Servicio' %><br />
-    <%= f.text_field :end_date, :class => 'date' %>
-  </p>
-  <p><%= f.submit "Guardar" %> <%= link_to "Cancelar", services_path %></p>
-<% end %>
+<div class="edit">
+	<% form_for @service do |f| %>
+	  <%= f.error_messages %>
+		<fieldset>
+			<legend>Datos del Servicio</legend>
+			<div class="left">
+			    <%= f.label :crane_id, 'Grua' %><br />
+			    <%= f.select :crane_id, [['Selecciona',0]] + Crane.all.collect {|o| [o.name, o.id]} %>
+			</div>
+			<div class="left">
+			    <%= f.label :operator_id, 'Operador' %><br />
+			    <%= f.select :operator_id, [['Selecciona',0]] + Operator.all.collect {|o| [o.name, o.id]} %>
+			</div>
+			<div class="left">
+			    <%= f.label :user_id, 'Asistencia' %><br />
+			    <%= f.select :user_id, [['Selecciona',0]] + User.no_admin.collect {|o| [o.name, o.id]} %>
+			</div>
+			<div class="left">
+			    <%= f.label :file, 'Expediente' %><br />
+			    <%= f.text_field :file, :size => 14 %>
+			</div>
+			<div class="left">
+			    <%= f.label :service_type_id, 'Servicio' %><br />
+			    <%= f.select :service_type_id, [['Selecciona',0]] + ServiceType.all.collect {|o| [o.name, o.id]} %>
+			</div>
+			<div class="left">
+		    <%= f.label :price, 'Precio' %><br />
+		    <%= f.text_field :price, :size => 10 %>
+		  </div>
+			<div class="clear"></div>
+			<div class="left">
+		    <%= f.label :start_date, 'Fecha de Inicio' %><br />
+		    <%= f.text_field :start_date, :size => 8, :class => 'date' %>
+		  </div>
+			<div class="left">
+		    <%= f.label :contact_date, 'Fecha de Contacto' %><br />
+		    <%= f.text_field :contact_date, :size => 8, :class => 'date' %>
+		  </div>
+			<div class="left">
+		    <%= f.label :end_date, 'Fin del Servicio' %><br />
+		    <%= f.text_field :end_date, :size => 8, :class => 'date' %>
+		  </div>
+		</fieldset>
+		<fieldset>
+			<legend>Datos del Veh&iacute;culo</legend>
+			<div class="left">
+				Marca<br />
+		    <% if @service.id.nil? %>
+					<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}) %>
+				<% else %>
+					<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}, @service.car_type.car_brand.id) %>
+				<% end %>
+			</div>
+			<div class="left">
+				<%= f.label :car_type_id, 'Tipo' %><br />
+				<% if @service.id.nil? %>
+					<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] %>
+				<% else %>
+					<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] + CarType.find(:all, :conditions => {:car_brand_id => @service.car_type.car_brand.id}).collect {|o| [o.name, o.id]} %>
+				<% end %>
+			</div>
+			<div class="left">
+				<%= f.label :car_model, 'Modelo' %><br />
+		    <%= f.text_field :car_model, :size => 4 %>
+			</div>
+			<div class="left">
+				<%= f.label :color %><br />
+		    <%= f.text_field :color, :size => 15 %>
+			</div>
+			<div class="left">
+		    <%= f.label :board, 'Placas' %><br />
+		    <%= f.text_field :board, :size => 14 %>
+		  </div>
+			<div class="left">
+		    <%= f.label :insured, 'Asegurado' %><br />
+		    <%= f.text_field :insured, :size => 30 %>
+		  </div>
+			<div class="clear"></div>
+		</fieldset>
+		<fieldset>
+			<legend>Ubicaci&oacute;n</legend>
+			<div class="left">
+				<%= f.label :location_city_id, 'Ubicaci&oacute;n' %><br />
+		    <%= f.text_field :location_city_id %>
+			</div>
+			<div class="left">
+				<%= f.label :destination_city_id, 'Destino' %><br />
+		    <%= f.text_field :destination_city_id %>
+			</div>
+			<div class="clear"></div>
+		</fieldset>
+	  <fieldset>
+	    <legend>Observaciones</legend>
+	    <%= f.text_area :references, :cols => 50, :rows => 5 %>
+	  </fieldset>
+	  <p><%= f.submit "Guardar" %> <%= link_to "Cancelar", services_path %></p>
+	<% end %>
+</div>
 <script type="text/javascript" charset="utf-8">
-	$("#car_brand_id").change(function() {
-		$("#service_car_type_id").load('/car_types/like_options', {car_brand_id: $("#car_brand_id option:selected").attr('value'), authenticity_token: '<%= form_authenticity_token %>'});
+	$("#car_brand").change(function() {
+		$("#service_car_type_id").load('/car_types/like_options', {car_brand_id: $("#car_brand option:selected").attr('value'), authenticity_token: '<%= form_authenticity_token %>'});
 	});
 </script>

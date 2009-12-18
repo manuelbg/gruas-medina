@@ -17,10 +17,22 @@ a {
   color: #0000FF;
 }
 
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+.edit fieldset {
+	margin: 6px;
+	font-size: 11px;
+}
+
+.edit fieldset div {
+	margin: 6px;
+}
+
+#show fieldset {
+	margin: 6px;
+	font-size: 11px;
+}
+
+#show fieldset div {
+	margin: 6px 26px;
 }
 
 #wrapper {
@@ -143,6 +155,10 @@ div#login {
 	margin: 0 auto;
 }
 
+#admin {
+	font-size: 11px;
+}
+
 #admin .box2 h3 {
 	background: #000;
 	color: #fff;
@@ -191,6 +207,10 @@ div#login {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+table#services {
+	font-size: 11px;
 }
 
 table#services tr th {

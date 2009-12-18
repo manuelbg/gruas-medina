@@ -31,9 +31,9 @@
       <td><%=h service.contact_date.to_date %></td>
       <td><%=h service.end_date.to_date %></td>
       <td>
-				<%= link_to "Ver", service %>
-				<%= link_to "Editar", edit_service_path(service) %>
-				<%= link_to "Eliminar", service, :confirm => 'Estas seguro?', :method => :delete %>
+				<%= link_to image_tag('show_icon.png', :border => 0, :title => 'Ver'), service %>
+				<%= link_to image_tag('edit_icon.png', :border => 0, :title => 'Editar'), edit_service_path(service) %>
+				<%= link_to image_tag('delete_icon.png', :border => 0, :title => 'Eliminar'), service, :confirm => 'Estas seguro?', :method => :delete %>
 			</td>
     </tr>
   <% end %>

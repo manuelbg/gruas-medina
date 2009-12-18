@@ -24,7 +24,7 @@ a {
 }
 
 #wrapper {
-  width: 870px;
+  width: 1000px;
   margin: 0 auto;
 	margin-top: 20px;
 	background-color: #FFF;
@@ -191,6 +191,14 @@ div#login {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+table#services tr th {
+	padding: 10px;
+}
+
+table#services tr td {
+	text-align: center;
 }
 
 .box2 {

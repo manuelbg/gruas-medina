@@ -1,6 +1,6 @@
 <% title "Services" %>
 
-<table>
+<table id="services">
   <tr>
     <th>Grua</th>
     <th>Operador</th>
@@ -18,8 +18,8 @@
   </tr>
   <% for service in @services %>
     <tr>
-    	<td><%=h service.crane_id %></td>
-      <td><%=h service.operator_id %></td>
+    	<td><%=h service.crane.name %></td>
+      <td><%=h service.operator.name %></td>
       <td><%=h service.user.name %></td>
 			<td><%=h service.file %></td>
       <td><%=h service.car_type.car_brand.name %></td>
@@ -27,9 +27,9 @@
       <td><%=h service.car_model %></td>
       <td><%=h service.color %></td>
       <td><%=h service.status %></td>
-      <td><%=h service.created_at %></td>
-      <td><%=h service.id %></td>
-      <td><%=h service.id %></td>
+      <td><%=h service.created_at.to_date %></td>
+      <td><%=h service.contact_date.to_date %></td>
+      <td><%=h service.end_date.to_date %></td>
       <td>
 				<%= link_to "Ver", service %>
 				<%= link_to "Editar", edit_service_path(service) %>

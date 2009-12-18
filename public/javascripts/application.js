@@ -4,4 +4,5 @@ $(document).ready(function(){
 	.slideToggle('slow', function() {
 		$(this).remove();
 	});
+	$(".date").datepicker();
 });

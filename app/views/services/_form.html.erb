@@ -6,11 +6,19 @@
   </p>
 	<p>
     Marca<br />
-    <%= select :car_brand, :id, [['Selecciona',0]] + CarBrand.all.collect {|o| [o.name, o.id]} %>
+    <% if @service.id.nil? %>
+			<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}) %>
+		<% else %>
+			<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}, @service.car_type.car_brand.id) %>
+		<% end %>
   </p>
 	<p>
 		<%= f.label :car_type_id, 'Tipo' %><br />
-		<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] %>
+		<% if @service.id.nil? %>
+			<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] %>
+		<% else %>
+			<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] + CarType.find(:all, :conditions => {:car_brand_id => @service.car_type.car_brand.id}).collect {|o| [o.name, o.id]} %>
+		<% end %>
 	</p>
   <p>
     <%= f.label :user_id, 'Usuario' %><br />
@@ -59,6 +67,14 @@
   <p>
     <%= f.label :crane_id, 'Grua' %><br />
     <%= f.select :crane_id, [['Selecciona',0]] + Crane.all.collect {|o| [o.name, o.id]} %>
+  </p>
+	<p>
+    <%= f.label :contact_date, 'Fecha de Contacto' %><br />
+    <%= f.text_field :contact_date, :class => 'date' %>
+  </p>
+	<p>
+    <%= f.label :end_date, 'Fin del Servicio' %><br />
+    <%= f.text_field :end_date, :class => 'date' %>
   </p>
   <p><%= f.submit "Guardar" %> <%= link_to "Cancelar", services_path %></p>
 <% end %>

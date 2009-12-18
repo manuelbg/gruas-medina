@@ -1,4 +1,6 @@
 class ServiceTypesController < ApplicationController
+  before_filter :only_admin
+  
   def index
     @service_types = ServiceType.all
   end

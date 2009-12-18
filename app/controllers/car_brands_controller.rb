@@ -1,4 +1,6 @@
 class CarBrandsController < ApplicationController
+  before_filter :only_admin
+  
   def index
     @car_brands = CarBrand.all
   end

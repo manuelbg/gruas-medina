@@ -1,4 +1,5 @@
 class CarTypesController < ApplicationController
+  before_filter :only_admin
   before_filter :load_brand, :except => :like_options
   
   def index

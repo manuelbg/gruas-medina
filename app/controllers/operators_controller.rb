@@ -1,4 +1,6 @@
 class OperatorsController < ApplicationController
+  before_filter :only_admin
+  
   def index
     @operators = Operator.all
   end

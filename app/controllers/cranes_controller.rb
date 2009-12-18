@@ -1,4 +1,6 @@
 class CranesController < ApplicationController
+  before_filter :only_admin
+  
   def index
     @cranes = Crane.all
   end

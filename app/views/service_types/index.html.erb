@@ -1,0 +1,17 @@
+<% title "Sub-Servicios" %>
+<h1>Sub-Servicios</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+  </tr>
+  <% for service_type in @service_types %>
+    <tr>
+      <td><%=h service_type.name %></td>
+      <td><%= link_to "Editar", edit_service_type_path(service_type) %></td>
+      <td><%= link_to "Eliminar", service_type, :confirm => 'Estas seguro?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Nuevo Sub-Servicio", new_service_type_path %> <%= link_to 'Regresar a la Administración', admin_path() %></p>

@@ -1,0 +1,2 @@
+module CranesHelper
+end

@@ -1,17 +1,18 @@
-<% title "Car Brands" %>
+<% title "Marcas" %>
+<h1>Marcas</h1>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Nombre</th>
   </tr>
   <% for car_brand in @car_brands %>
     <tr>
       <td><%=h car_brand.name %></td>
-      <td><%= link_to "Show", car_brand %></td>
-      <td><%= link_to "Edit", edit_car_brand_path(car_brand) %></td>
-      <td><%= link_to "Destroy", car_brand, :confirm => 'Are you sure?', :method => :delete %></td>
+			<td><%= link_to "Sus Tipos de Vehiculos", car_brand_car_types_path(car_brand) %></td>
+      <td><%= link_to "Cambiar Nombre", edit_car_brand_path(car_brand) %></td>
+      <td><%= link_to "Eliminar", car_brand, :confirm => 'Estas seguro?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Car Brand", new_car_brand_path %></p>
+<p><%= link_to "Nueva Marca", new_car_brand_path %> <%= link_to 'Regresar a la Administración', admin_path() %></p>

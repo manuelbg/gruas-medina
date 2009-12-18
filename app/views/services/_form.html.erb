@@ -46,7 +46,7 @@
   </p>
   <p>
     <%= f.label :service_type_id, 'Servicio' %><br />
-    <%= f.text_field :service_type_id %>
+    <%= f.select :service_type_id, [['Selecciona',0]] + ServiceType.all.collect {|o| [o.name, o.id]} %>
   </p>
   <p>
     <%= f.label :price, 'Precio' %><br />
@@ -54,13 +54,13 @@
   </p>
   <p>
     <%= f.label :operator_id, 'Operador' %><br />
-    <%= f.text_field :operator_id %>
+    <%= f.select :operator_id, [['Selecciona',0]] + Operator.all.collect {|o| [o.name, o.id]} %>
   </p>
   <p>
-    <%= f.label :crane, 'Grua' %><br />
-    <%= f.text_field :crane %>
+    <%= f.label :crane_id, 'Grua' %><br />
+    <%= f.select :crane_id, [['Selecciona',0]] + Crane.all.collect {|o| [o.name, o.id]} %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit "Guardar" %> <%= link_to "Cancelar", services_path %></p>
 <% end %>
 <script type="text/javascript" charset="utf-8">
 	$("#car_brand_id").change(function() {

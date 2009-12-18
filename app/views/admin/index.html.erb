@@ -1,0 +1,32 @@
+<div id="admin" class="box">
+	<div id="usuarios" class="box2">
+		<h3>Usuarios <%= link_to 'Editar', users_path %></h3>
+		<div>
+			Administradores: <%= User.admin.size %>, Clientes: <%= User.no_admin.size %>
+		</div>
+	</div>
+	<div id="brands" class="box2">
+		<h3>Veh&iacute;culos <%= link_to 'Editar', car_brands_path %></h3>
+		<div>
+			Marcas: <%= CarBrand.all.size %>, Tipos: <%= CarType.all.size %>
+		</div>
+	</div>
+	<div id="service_types" class="box2">
+		<h3>Servicios <%= link_to 'Editar', service_types_path %></h3>
+		<div>
+			Servicios: <%= ServiceType.all.size %>
+		</div>
+	</div>
+	<div id="cranes" class="box2">
+		<h3>Gr&uacute;as <%= link_to 'Editar', cranes_path %></h3>
+		<div>
+			Gr&uacute;as: <%= Crane.all.size %>
+		</div>
+	</div>
+	<div id="operators" class="box2">
+		<h3>Operadores <%= link_to 'Editar', operators_path %></h3>
+		<div>
+			Operadores: <%= Operator.all.size %>
+		</div>
+	</div>
+</div>

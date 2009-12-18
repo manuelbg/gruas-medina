@@ -18,7 +18,7 @@
   </tr>
   <% for service in @services %>
     <tr>
-    	<td><%=h service.crane %></td>
+    	<td><%=h service.crane_id %></td>
       <td><%=h service.operator_id %></td>
       <td><%=h service.user.name %></td>
 			<td><%=h service.file %></td>
@@ -30,10 +30,11 @@
       <td><%=h service.created_at %></td>
       <td><%=h service.id %></td>
       <td><%=h service.id %></td>
-      <td><%=h service.service_type_id %></td>
-      <td><%= link_to "Show", service %></td>
-      <td><%= link_to "Edit", edit_service_path(service) %></td>
-      <td><%= link_to "Destroy", service, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+				<%= link_to "Ver", service %>
+				<%= link_to "Editar", edit_service_path(service) %>
+				<%= link_to "Eliminar", service, :confirm => 'Estas seguro?', :method => :delete %>
+			</td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,12 @@
+<% title "Crane" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @crane.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_crane_path(@crane) %> |
+  <%= link_to "Destroy", @crane, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", cranes_path %>
+</p>

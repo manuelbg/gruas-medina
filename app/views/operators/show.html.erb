@@ -1,0 +1,12 @@
+<% title "Operator" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @operator.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_operator_path(@operator) %> |
+  <%= link_to "Destroy", @operator, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", operators_path %>
+</p>

@@ -4,6 +4,11 @@ body {
   font-size: 12px;
 }
 
+h3 {
+	margin: 0;
+	padding: 0;
+}
+
 a img {
   border: none;
 }
@@ -138,6 +143,22 @@ div#login {
 	margin: 0 auto;
 }
 
+#admin .box2 h3 {
+	background: #000;
+	color: #fff;
+	padding: 6px;
+}
+
+#admin .box2 h3 a {
+	font-size: 12px;
+	font-weight: normal;
+	color: #aaa;
+}
+
+.box2 div {
+	margin: 10px;
+}
+
 #errorExplanation {
   width: 400px;
   border: 2px solid #CF0000;
@@ -167,11 +188,15 @@ div#login {
   margin: 2px 24px;
 }
 
-
-
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+.box2 {
+	margin: 10px;
+	padding: 0;
+	border: 1px #ccc solid;
 }
 
 .left {

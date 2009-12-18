@@ -1,12 +1,21 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :service_types
+
+  map.resources :operators
+
+  map.resources :cranes
+
   map.resources :car_types, :collection => {:like_options => :any}
 
-  map.resources :car_brands
+  map.resources :car_brands do |car_brand|
+    car_brand.resources :car_types
+  end
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
+  map.admin '/admin', :controller => 'admin', :action => 'index'
   
   map.resources :services
   

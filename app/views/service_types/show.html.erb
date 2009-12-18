@@ -1,0 +1,12 @@
+<% title "Service Type" %>
+
+<p>
+  <strong>Nombre:</strong>
+  <%=h @service_type.name %>
+</p>
+
+<p>
+  <%= link_to "Editar", edit_service_type_path(@service_type) %> |
+  <%= link_to "Destroy", @service_type, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", service_types_path %>
+</p>

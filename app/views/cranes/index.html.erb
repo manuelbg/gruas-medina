@@ -1,0 +1,17 @@
+<% title "Grúas" %>
+<h1>Gr&uacute;as</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+  </tr>
+  <% for crane in @cranes %>
+    <tr>
+      <td><%=h crane.name %></td>
+      <td><%= link_to "Editar", edit_crane_path(crane) %></td>
+      <td><%= link_to "Eliminar", crane, :confirm => 'Estas Seguro?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Nueva Gr&uacute;a", new_crane_path %> <%= link_to 'Regresar a la Administración', admin_path() %></p>

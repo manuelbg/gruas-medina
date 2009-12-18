@@ -1,12 +1,8 @@
-<% form_for @car_type do |f| %>
+<% form_for [@car_brand,@car_type] do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :car_brand_id %><br />
-    <%= f.text_field :car_brand_id %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, 'Nombre' %><br />
     <%= f.text_field :name %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit "Guardar" %> <%= link_to "Cancelar", car_brand_car_types_path(@car_brand) %></p>
 <% end %>

@@ -1,10 +1,12 @@
 <% title "Clientes" %>
 <h1>Admins</h1>
-<%= link_to 'Nuevo Usuario', new_user_path() %>
+<p>
+	<%= link_to 'Nuevo Usuario', new_user_path(), :class => 'button' %>
+</p>
 <div id="users">
-	<div class="name title">Nombre</div>
-	<div class="email title">E-Mail</div>
-	<div class="actions title" style="text-align: center">Acciones</div>
+	<div class="name title ui-widget-header">Nombre</div>
+	<div class="email title ui-widget-header">E-Mail</div>
+	<div class="actions title ui-widget-header" style="text-align: center">Acciones</div>
 	<div class="clear"></div>
 	<% User.admin.each do |user| %>
 	<div class="user">
@@ -22,11 +24,13 @@
 	<% end %>
 </div>
 <h1>Clientes</h1>
-<%= link_to 'Nuevo Usuario', new_user_path() %>
+<p>
+	<%= link_to 'Nuevo Usuario', new_user_path(), :class => 'button' %>
+</p>
 <div id="users">
-	<div class="name title">Nombre</div>
-	<div class="email title">E-Mail</div>
-	<div class="actions title" style="text-align: center">Acciones</div>
+	<div class="name title ui-widget-header">Nombre</div>
+	<div class="email title ui-widget-header">E-Mail</div>
+	<div class="actions title ui-widget-header" style="text-align: center">Acciones</div>
 	<div class="clear"></div>
 	<% User.no_admin.each do |user| %>
 	<div class="user">
@@ -41,3 +45,7 @@
 	</div>
 	<% end %>
 </div>
+<br>
+<p>
+	<%= link_to 'Regresar a la Administración', admin_path(), :class => 'button' %>
+</p>

@@ -17,5 +17,5 @@
 <p><%= label_tag 'password', 'Confirmar Nueva Contraseña' %><br/>
 <%= f.password_field :password_confirmation %></p>
 
-<p><%= submit_tag 'Guardar' %></p>
+<p><%= f.submit "Guardar", :class => 'button' %> <%= link_to "Cancelar", users_path, :class => 'button' %></p>
 <% end -%>

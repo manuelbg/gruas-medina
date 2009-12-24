@@ -1,32 +1,58 @@
 <div id="admin" class="box">
 	<div id="usuarios" class="box2">
-		<h3>Usuarios <%= link_to 'Editar', users_path %></h3>
+		<h3 class="ui-widget-header">Usuarios</h3>
 		<div>
-			Administradores: <%= User.admin.size %>, Clientes: <%= User.no_admin.size %>
+			<p>
+				Administradores: <%= User.admin.size %>
+			</p>
+			<p>
+				Clientes: <%= User.no_admin.size %>
+			</p>
 		</div>
+		<p>
+			<%= link_to 'Editar', users_path, :class => 'button' %>
+		</p>
 	</div>
 	<div id="brands" class="box2">
-		<h3>Veh&iacute;culos <%= link_to 'Editar', car_brands_path %></h3>
+		<h3 class="ui-widget-header">Veh&iacute;culos</h3>
 		<div>
-			Marcas: <%= CarBrand.all.size %>, Tipos: <%= CarType.all.size %>
+			<p>
+				Marcas: <%= CarBrand.all.size %>
+			</p>
+			<p>
+				Tipos: <%= CarType.all.size %>
+			</p>
 		</div>
+		<p>
+			<%= link_to 'Editar', car_brands_path, :class => 'button' %>
+		</p>
 	</div>
 	<div id="service_types" class="box2">
-		<h3>Servicios <%= link_to 'Editar', service_types_path %></h3>
+		<h3 class="ui-widget-header">Servicios</h3>
 		<div>
 			Servicios: <%= ServiceType.all.size %>
 		</div>
+		<p>
+			<%= link_to 'Editar', service_types_path, :class => 'button' %>
+		</p>
 	</div>
 	<div id="cranes" class="box2">
-		<h3>Gr&uacute;as <%= link_to 'Editar', cranes_path %></h3>
+		<h3 class="ui-widget-header">Gr&uacute;as</h3>
 		<div>
 			Gr&uacute;as: <%= Crane.all.size %>
 		</div>
+		<p>
+			<%= link_to 'Editar', cranes_path, :class => 'button' %>
+		</p>
 	</div>
 	<div id="operators" class="box2">
-		<h3>Operadores <%= link_to 'Editar', operators_path %></h3>
+		<h3 class="ui-widget-header">Operadores</h3>
 		<div>
 			Operadores: <%= Operator.all.size %>
 		</div>
+		<p>
+			<%= link_to 'Editar', operators_path, :class => 'button' %>
+		</p>
 	</div>
+	<div class="clear"></div>
 </div>

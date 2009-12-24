@@ -10,6 +10,10 @@
 		    <%= @service.operator.name %>
 		</div>
 		<div class="left">
+		    <strong>Solicito</strong><br />
+		    <%= @service.applicant %>
+		</div>
+		<div class="left">
 		    <strong>Asistencia</strong><br />
 		    <%= @service.user.name %>
 		</div>
@@ -28,15 +32,15 @@
 		<div class="clear"></div>
 		<div class="left">
 	    <strong>Fecha de Inicio</strong><br />
-	    <%= @service.start_date.to_date %>
+	    <%= (@service.start_date or !@service.start_date.blank?) ? @service.start_date.to_date : 'Si Definir' %>
 	  </div>
 		<div class="left">
 	    <strong>Fecha de Contacto</strong><br />
-	    <%= @service.contact_date.to_date %>
+	    <%= (@service.contact_date or !@service.contact_date.blank?) ? @service.contact_date.to_date : 'Si Definir' %>
 	  </div>
 		<div class="left">
 	    <strong>Fin del Servicio</strong><br />
-	    <%= @service.end_date.to_date %>
+	    <%= (@service.end_date or !@service.end_date.blank?) ? @service.end_date.to_date : 'Si Definir' %>
 	  </div>
 	</fieldset>
 	<fieldset>
@@ -65,17 +69,33 @@
 	    <strong>Asegurado</strong><br />
 	    <%= @service.insured %>
 	  </div>
+		<div class="left">
+	    <strong>Tel&eacute;fono de contacto con el Cliente Final</strong><br />
+	    <%= @service.contact_phone %>
+	  </div>
 		<div class="clear"></div>
 	</fieldset>
 	<fieldset>
 		<legend>Ubicaci&oacute;n</legend>
 		<div class="left">
-			<strong>Ubicaci&oacute;n</strong><br />
-	    <%= @service.location_city_id %>
+			<p>
+				<strong>Estado</strong><br />
+		    <%= @service.location_state.name %>
+			</p>
+			<p>
+				<strong>Municipio</strong><br />
+		    <%= @service.location_county_name %>
+			</p>
 		</div>
 		<div class="left">
-			<strong>Destino</strong><br />
-	    <%= @service.destination_city_id %>
+			<p>
+				<strong>Estado</strong><br />
+		    <%= @service.destination_state.name %>
+			</p>
+			<p>
+				<strong>Municipio</strong><br />
+		    <%= @service.destination_county_name %>
+			</p>
 		</div>
 		<div class="clear"></div>
 	</fieldset>
@@ -84,6 +104,6 @@
     <%= @service.references %>
   </fieldset>
 	<p>
-		<%= link_to 'Regresar', services_path %>
+		<%= link_to 'Regresar', services_path, :class => 'button' %>
 	</p>
 </div>

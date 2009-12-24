@@ -2,19 +2,20 @@
 
 <table id="services">
   <tr>
-    <th>Grua</th>
-    <th>Operador</th>
-		<th>Asistencia</th>
-    <th>Exp.</th>
-    <th>Marca</th>
-    <th>Tipo</th>
-    <th>Modelo</th>
-    <th>Color</th>
-    <th>Estatus</th>
-    <th>F. Alta</th>
-    <th>F. Cont</th>
-    <th>F. Fin</th>
-    <th>Acciones</th>
+    <th class="ui-widget-header">Grua</th>
+    <th class="ui-widget-header">Operador</th>
+		<th class="ui-widget-header">Asistencia</th>
+    <th class="ui-widget-header">Exp.</th>
+    <th class="ui-widget-header">Marca</th>
+    <th class="ui-widget-header">Tipo</th>
+    <th class="ui-widget-header">Modelo</th>
+    <th class="ui-widget-header">Color</th>
+    <th class="ui-widget-header">Estatus</th>
+    <th class="ui-widget-header">F. Alta</th>
+    <th class="ui-widget-header">F. Cont</th>
+    <th class="ui-widget-header">F. Fin</th>
+    <th class="ui-widget-header">Acciones</th>
+		<th class="ui-widget-header">Solicito</th>
   </tr>
   <% for service in @services %>
     <tr>
@@ -22,21 +23,22 @@
       <td><%=h service.operator.name %></td>
       <td><%=h service.user.name %></td>
 			<td><%=h service.file %></td>
-      <td><%=h service.car_type.car_brand.name %></td>
-      <td><%=h service.car_type.name %></td>
+      <td><%=h (service.car_type_id or !service.car_type_id == 0 ) ? service.car_type.car_brand.name : 'Si Definir' %></td>
+      <td><%=h (service.car_type_id or !service.car_type_id == 0 ) ? service.car_type.name : 'Si Definir' %></td>
       <td><%=h service.car_model %></td>
       <td><%=h service.color %></td>
       <td><%=h service.status %></td>
-      <td><%=h service.created_at.to_date %></td>
-      <td><%=h service.contact_date.to_date %></td>
-      <td><%=h service.end_date.to_date %></td>
+      <td><%=h (service.start_date or !service.start_date.blank?) ? service.start_date.to_date : 'Si Definir' %></td>
+      <td><%=h (service.contact_date or !service.contact_date.blank?) ? service.contact_date.to_date : 'Si Definir' %></td>
+      <td><%=h (service.end_date or !service.end_date.blank?) ? service.end_date.to_date : 'Si Definir' %></td>
       <td>
 				<%= link_to image_tag('show_icon.png', :border => 0, :title => 'Ver'), service %>
 				<%= link_to image_tag('edit_icon.png', :border => 0, :title => 'Editar'), edit_service_path(service) %>
 				<%= link_to image_tag('delete_icon.png', :border => 0, :title => 'Eliminar'), service, :confirm => 'Estas seguro?', :method => :delete %>
 			</td>
+			<td><%=h service.applicant %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "Nuevo Expediente", new_service_path %></p>
+<p><%= link_to "Nuevo Expediente", new_service_path, :class => 'button' %></p>

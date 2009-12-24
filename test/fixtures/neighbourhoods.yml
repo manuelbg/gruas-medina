@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  county_id: 1
+  name: MyString
+  category: MyString
+  zip: MyString
+
+two:
+  county_id: 1
+  name: MyString
+  category: MyString
+  zip: MyString

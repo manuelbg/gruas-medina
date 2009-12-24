@@ -106,7 +106,6 @@ a {
 #users .title {
 	font-weight: bold;
 	text-align: center;
-	background: #000;
 	color: #fff;
 }
 
@@ -160,15 +159,13 @@ div#login {
 }
 
 #admin .box2 h3 {
-	background: #000;
 	color: #fff;
-	padding: 6px;
+	padding: 4px;
+	position: relative;
 }
 
-#admin .box2 h3 a {
-	font-size: 12px;
-	font-weight: normal;
-	color: #aaa;
+.ui-widget-header {
+	padding: 4px;
 }
 
 .box2 div {
@@ -214,17 +211,31 @@ table#services {
 }
 
 table#services tr th {
-	padding: 10px;
+	padding: 4px;
 }
 
 table#services tr td {
 	text-align: center;
 }
 
+.button {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 4px 10px;
+	border: 1px #E8E8E8 solid;
+	background: #F5f5f5;
+	color: #999;
+	text-decoration: none;
+	font-size: 10px;
+	margin: 10px;
+}
+
 .box2 {
 	margin: 10px;
 	padding: 0;
 	border: 1px #ccc solid;
+	width: 174px;
+	float: left;
 }
 
 .left {

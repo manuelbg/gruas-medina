@@ -5,15 +5,19 @@
 			<legend>Datos del Servicio</legend>
 			<div class="left">
 			    <%= f.label :crane_id, 'Grua' %><br />
-			    <%= f.select :crane_id, [['Selecciona',0]] + Crane.all.collect {|o| [o.name, o.id]} %>
+			    <%= f.select :crane_id, [['Selecciona','']] + Crane.all.collect {|o| [o.name, o.id]} %>
 			</div>
 			<div class="left">
 			    <%= f.label :operator_id, 'Operador' %><br />
-			    <%= f.select :operator_id, [['Selecciona',0]] + Operator.all.collect {|o| [o.name, o.id]} %>
+			    <%= f.select :operator_id, [['Selecciona','']] + Operator.all.collect {|o| [o.name, o.id]} %>
 			</div>
 			<div class="left">
+		    <%= f.label :applicant, 'Solicito' %><br />
+		    <%= f.text_field :applicant, :size => 26 %>
+		  </div>
+			<div class="left">
 			    <%= f.label :user_id, 'Asistencia' %><br />
-			    <%= f.select :user_id, [['Selecciona',0]] + User.no_admin.collect {|o| [o.name, o.id]} %>
+			    <%= f.select :user_id, [['Selecciona','']] + User.no_admin.collect {|o| [o.name, o.id]} %>
 			</div>
 			<div class="left">
 			    <%= f.label :file, 'Expediente' %><br />
@@ -21,7 +25,7 @@
 			</div>
 			<div class="left">
 			    <%= f.label :service_type_id, 'Servicio' %><br />
-			    <%= f.select :service_type_id, [['Selecciona',0]] + ServiceType.all.collect {|o| [o.name, o.id]} %>
+			    <%= f.select :service_type_id, [['Selecciona','']] + ServiceType.all.collect {|o| [o.name, o.id]} %>
 			</div>
 			<div class="left">
 		    <%= f.label :price, 'Precio' %><br />
@@ -45,7 +49,7 @@
 			<legend>Datos del Veh&iacute;culo</legend>
 			<div class="left">
 				Marca<br />
-		    <% if @service.id.nil? %>
+		    <% if @service.id.nil? or @service.car_type_id == 0 %>
 					<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}) %>
 				<% else %>
 					<%= select_tag :car_brand, options_for_select(['Selecciona',0] + CarBrand.all.collect {|o| [o.name, o.id]}, @service.car_type.car_brand.id) %>
@@ -53,7 +57,7 @@
 			</div>
 			<div class="left">
 				<%= f.label :car_type_id, 'Tipo' %><br />
-				<% if @service.id.nil? %>
+				<% if @service.id.nil? or @service.car_type_id == 0 %>
 					<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] %>
 				<% else %>
 					<%= f.select :car_type_id, [['Primero Selecciona la Marca',0]] + CarType.find(:all, :conditions => {:car_brand_id => @service.car_type.car_brand.id}).collect {|o| [o.name, o.id]} %>
@@ -69,35 +73,145 @@
 			</div>
 			<div class="left">
 		    <%= f.label :board, 'Placas' %><br />
-		    <%= f.text_field :board, :size => 14 %>
+		    <%= f.text_field :board, :size => 10 %>
 		  </div>
 			<div class="left">
 		    <%= f.label :insured, 'Asegurado' %><br />
-		    <%= f.text_field :insured, :size => 30 %>
+		    <%= f.text_field :insured, :size => 26 %>
+		  </div>
+			<div class="left">
+		    <%= f.label :contact_phone, 'Teléfono de contacto con el Cliente Final' %><br />
+		    <%= f.text_field :contact_phone, :size => 12 %>
 		  </div>
 			<div class="clear"></div>
 		</fieldset>
-		<fieldset>
+		<div class="left">
+			<fieldset>
 			<legend>Ubicaci&oacute;n</legend>
-			<div class="left">
-				<%= f.label :location_city_id, 'Ubicaci&oacute;n' %><br />
-		    <%= f.text_field :location_city_id %>
-			</div>
-			<div class="left">
-				<%= f.label :destination_city_id, 'Destino' %><br />
-		    <%= f.text_field :destination_city_id %>
-			</div>
-			<div class="clear"></div>
-		</fieldset>
+				<p>
+					<%= f.label :location_state_id, 'Estado' %><br>
+		    	<%= select_tag :service_location_state_id, options_for_select(State.all.collect {|s| [s.name, s.id]}, @service.location_state_id ? @service.location_state_id : 19), :name => 'service[location_state_id]' %>
+				</p>
+				<p>
+					<%= f.label :location_county_name, 'Municipio' %><br>
+		    	<%= f.text_field :location_county_name %>
+				</p>
+			</fieldset>
+		</div>
+		<div class="left">
+			<fieldset>
+			<legend>Destino</legend>
+				<p>
+		    	<%= f.label :destination_state_id, 'Estado' %><br>
+	    		<%= select_tag :service_destination_state_id, options_for_select(State.all.collect {|s| [s.name, s.id]}, @service.destination_state_id ? @service.destination_state_id : 19), :name => 'service[destination_state_id]' %>
+				</p>
+				<p>
+					<%= f.label :destination_county_name, 'Municipio' %><br>
+		    	<%= f.text_field :destination_county_name %>
+				</p>
+			</fieldset>
+		</div>
+		<div class="clear"></div>
 	  <fieldset>
 	    <legend>Observaciones</legend>
-	    <%= f.text_area :references, :cols => 50, :rows => 5 %>
+	    <%= f.text_area :references, :cols => 50, :rows => 5, :class => 'wysiwyg' %>
 	  </fieldset>
-	  <p><%= f.submit "Guardar" %> <%= link_to "Cancelar", services_path %></p>
+	  <p><%= f.submit "Guardar", :class => 'button' %> <%= link_to "Cancelar", services_path, :class => 'button' %></p>
 	<% end %>
 </div>
 <script type="text/javascript" charset="utf-8">
 	$("#car_brand").change(function() {
 		$("#service_car_type_id").load('/car_types/like_options', {car_brand_id: $("#car_brand option:selected").attr('value'), authenticity_token: '<%= form_authenticity_token %>'});
+	});
+	function selectlocationItem(li) {
+		$("#service_location_county_name").val(li.innerHTML);
+	}
+	function selectdestinationItem(li) {
+		$("#service_destination_county_name").val(li.innerHTML);
+	}
+
+	function formatItem(row) {
+		return row[0];
+	}
+
+	function lookupAjax(){
+		var oSuggest = $("#service_location_county_name")[0].autocompleter;
+		oSuggest.findValue();
+		return false;
+	}
+	function lookupAjax(){
+		var oSuggest = $("#service_destination_county_name")[0].autocompleter;
+		oSuggest.findValue();
+		return false;
+	}
+
+	$("#service_location_county_name").autocomplete("<%= counties_path %>",
+		{
+			delay:100,
+			minChars:2,
+			matchSubset:1,
+			matchContains:1,
+			cacheLength:10,
+			onItemSelect:selectlocationItem,
+			formatItem:formatItem,
+			autoFill:false,
+			extraParams: {
+	    	state_id: function() { return $("#service_location_state_id").attr('value'); }
+			}
+		}
+	);
+	$("#service_destination_county_name").autocomplete("<%= counties_path %>",
+		{
+			delay:100,
+			minChars:2,
+			matchSubset:1,
+			matchContains:1,
+			cacheLength:10,
+			onItemSelect:selectdestinationItem,
+			formatItem:formatItem,
+			autoFill:false,
+			extraParams: {
+	    	state_id: function() { return $("#service_destination_state_id").attr('value'); }
+			}
+		}
+	);
+
+	$("#service_location_state_id").change(function(){
+		$("#service_location_county_name").flushCache();
+
+		$("#service_location_county_name").autocomplete("<%= counties_path %>",
+			{
+				delay:100,
+				minChars:2,
+				matchSubset:1,
+				matchContains:1,
+				cacheLength:10,
+				onItemSelect:selectItem,
+				formatItem:formatItem,
+				autoFill:false,
+				extraParams: {
+		    	state_id: function() { return $("#service_location_state_id").attr('value'); }
+				}
+			}
+		);
+	});
+	$("#service_destination_state_id").change(function(){
+		$("#service_destination_county_name").flushCache();
+
+		$("#service_destination_county_name").autocomplete("<%= counties_path %>",
+			{
+				delay:100,
+				minChars:2,
+				matchSubset:1,
+				matchContains:1,
+				cacheLength:10,
+				onItemSelect:selectItem,
+				formatItem:formatItem,
+				autoFill:false,
+				extraParams: {
+		    	state_id: function() { return $("#service_destination_state_id").attr('value'); }
+				}
+			}
+		);
 	});
 </script>

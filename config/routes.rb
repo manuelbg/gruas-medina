@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :counties
   map.resources :service_types
 
   map.resources :operators

@@ -5,4 +5,6 @@ $(document).ready(function(){
 		$(this).remove();
 	});
 	$(".date").datepicker();
+	$(".wysiwyg").wysiwyg();
+	$("table#services tr:odd").css('background','#eee');
 });

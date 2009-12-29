@@ -28,7 +28,7 @@
       <td><%=h service.car_model %></td>
       <td><%=h service.color %></td>
       <td><%=h service.status %></td>
-      <td><%=h (service.start_date or !service.start_date.blank?) ? service.start_date.to_date : 'Si Definir' %></td>
+      <td><%=h (service.created_at or !service.created_at.blank?) ? service.created_at.to_date : 'Si Definir' %></td>
       <td><%=h (service.contact_date or !service.contact_date.blank?) ? service.contact_date.to_date : 'Si Definir' %></td>
       <td><%=h (service.end_date or !service.end_date.blank?) ? service.end_date.to_date : 'Si Definir' %></td>
       <td>

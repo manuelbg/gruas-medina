@@ -31,7 +31,6 @@
 		    <%= f.label :price, 'Precio' %><br />
 		    <%= f.text_field :price, :size => 10 %>
 		  </div>
-			<div class="clear"></div>
 			<div class="left">
 		    <%= f.label :start_date, 'Fecha de Inicio' %><br />
 		    <%= f.text_field :start_date, :size => 8, :class => 'date' %>
@@ -96,6 +95,10 @@
 					<%= f.label :location_county_name, 'Municipio' %><br>
 		    	<%= f.text_field :location_county_name %>
 				</p>
+				<p>
+					<%= f.label :location_neighbourhood_name, 'Colonia' %><br>
+		    	<%= f.text_field :location_neighbourhood_name %>
+				</p>
 			</fieldset>
 		</div>
 		<div class="left">
@@ -108,6 +111,10 @@
 				<p>
 					<%= f.label :destination_county_name, 'Municipio' %><br>
 		    	<%= f.text_field :destination_county_name %>
+				</p>
+				<p>
+					<%= f.label :destination_neighbourhood_name, 'Colonia' %><br>
+		    	<%= f.text_field :destination_neighbourhood_name %>
 				</p>
 			</fieldset>
 		</div>
@@ -123,11 +130,17 @@
 	$("#car_brand").change(function() {
 		$("#service_car_type_id").load('/car_types/like_options', {car_brand_id: $("#car_brand option:selected").attr('value'), authenticity_token: '<%= form_authenticity_token %>'});
 	});
-	function selectlocationItem(li) {
+	function selectlocationcountyItem(li) {
 		$("#service_location_county_name").val(li.innerHTML);
 	}
-	function selectdestinationItem(li) {
+	function selectdestinationcountyItem(li) {
 		$("#service_destination_county_name").val(li.innerHTML);
+	}
+	function selectlocationneighbourhoodItem(li) {
+		$("#service_location_neighbourhood_name").val(li.innerHTML);
+	}
+	function selectdestinationneighbourhoodItem(li) {
+		$("#service_destination_neighbourhood_name").val(li.innerHTML);
 	}
 
 	function formatItem(row) {
@@ -144,6 +157,16 @@
 		oSuggest.findValue();
 		return false;
 	}
+	function lookupAjax(){
+		var oSuggest = $("#service_location_neighbourhood_name")[0].autocompleter;
+		oSuggest.findValue();
+		return false;
+	}
+	function lookupAjax(){
+		var oSuggest = $("#service_destination_neighbourhood_name")[0].autocompleter;
+		oSuggest.findValue();
+		return false;
+	}
 
 	$("#service_location_county_name").autocomplete("<%= counties_path %>",
 		{
@@ -152,7 +175,7 @@
 			matchSubset:1,
 			matchContains:1,
 			cacheLength:10,
-			onItemSelect:selectlocationItem,
+			onItemSelect:selectlocationcountyItem,
 			formatItem:formatItem,
 			autoFill:false,
 			extraParams: {
@@ -167,11 +190,41 @@
 			matchSubset:1,
 			matchContains:1,
 			cacheLength:10,
-			onItemSelect:selectdestinationItem,
+			onItemSelect:selectdestinationcountyItem,
 			formatItem:formatItem,
 			autoFill:false,
 			extraParams: {
 	    	state_id: function() { return $("#service_destination_state_id").attr('value'); }
+			}
+		}
+	);
+	$("#service_location_neighbourhood_name").autocomplete("<%= neighbourhoods_path %>",
+		{
+			delay:100,
+			minChars:2,
+			matchSubset:1,
+			matchContains:1,
+			cacheLength:10,
+			onItemSelect:selectlocationneighbourhoodItem,
+			formatItem:formatItem,
+			autoFill:false,
+			extraParams: {
+	    	county_name: function() { return $("#service_location_county_name").attr('value'); }
+			}
+		}
+	);
+	$("#service_destination_neighbourhood_name").autocomplete("<%= neighbourhoods_path %>",
+		{
+			delay:100,
+			minChars:2,
+			matchSubset:1,
+			matchContains:1,
+			cacheLength:10,
+			onItemSelect:selectdestinationneighbourhoodItem,
+			formatItem:formatItem,
+			autoFill:false,
+			extraParams: {
+	    	county_name: function() { return $("#service_destination_county_name").attr('value'); }
 			}
 		}
 	);
@@ -186,7 +239,7 @@
 				matchSubset:1,
 				matchContains:1,
 				cacheLength:10,
-				onItemSelect:selectItem,
+				onItemSelect:selectlocationcountyItem,
 				formatItem:formatItem,
 				autoFill:false,
 				extraParams: {
@@ -205,7 +258,7 @@
 				matchSubset:1,
 				matchContains:1,
 				cacheLength:10,
-				onItemSelect:selectItem,
+				onItemSelect:selectdestinationcountyItem,
 				formatItem:formatItem,
 				autoFill:false,
 				extraParams: {
@@ -214,4 +267,5 @@
 			}
 		);
 	});
+	
 </script>

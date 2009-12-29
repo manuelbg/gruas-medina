@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :reports
+  map.resources :neighbourhoods
   map.resources :counties
   map.resources :service_types
 

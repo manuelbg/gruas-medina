@@ -10,6 +10,7 @@
 		<%= javascript_include_tag 'jquery-1.3.2.min' %>
 		<%= javascript_include_tag 'jquery-ui-1.7.2.custom.min' %>
 		<%= javascript_include_tag 'jquery.autocomplete' %>
+		<%= javascript_include_tag 'swfobject' %>
 		<%= javascript_include_tag 'jquery.wysiwyg' %>
 		<%= javascript_include_tag 'application' %>
     <%= yield(:head) %>
@@ -28,7 +29,7 @@
 				<ul>
 					<li><%= link_to 'Expedientes', services_path %></li>
 					<li><%= link_to 'Administración', admin_path %></li>
-					<li><%= link_to 'Reportes', root_path %></li>
+					<li><%= link_to 'Reportes', reports_path %></li>
 					<li><%= link_to 'Salir', logout_path %></li>
 					<div class="clear"></div>
 				</ul>

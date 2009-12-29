@@ -38,9 +38,6 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  reconnect: false
-  database: gruas-medina_production
-  pool: 5
-  username: root
-  password: 
-  socket: /tmp/mysql.sock
+  database: zgssyste_gruas
+  username: zgssyste_gruas
+  password: 1018123

@@ -9,6 +9,8 @@ class Service < ActiveRecord::Base
   belongs_to :destination_state, :class_name => 'State'
   belongs_to :location_county, :class_name => 'County'
   belongs_to :destination_county, :class_name => 'County'
+  belongs_to :location_neighbourhood, :class_name => 'Neighbourhood'
+  belongs_to :destination_neighbourhood, :class_name => 'Neighbourhood'
   belongs_to :county
   
   validates_presence_of :crane_id, :message => "Selecciona una Grua."
@@ -45,6 +47,40 @@ class Service < ActiveRecord::Base
     unless name.blank?
       if county = County.find_by_name(name)
         self.destination_county_id = county.id
+      end
+    end
+  end
+  
+  def location_neighbourhood_name
+    if self.location_neighbourhood
+      location_neighbourhood = self.location_neighbourhood
+      "#{location_neighbourhood.name}/#{location_neighbourhood.category}"
+    else
+      ''
+    end
+  end
+  
+  def location_neighbourhood_name=(name)
+    unless name.blank?
+      if neighbourhood = Neighbourhood.find(:first, :conditions => {:name => name.split('/')[0], :category => name.split('/')[1]})
+        self.location_neighbourhood_id = neighbourhood.id
+      end
+    end
+  end
+  
+  def destination_neighbourhood_name
+    if self.destination_neighbourhood
+      destination_neighbourhood = self.destination_neighbourhood
+      "#{destination_neighbourhood.name}/#{destination_neighbourhood.category}"
+    else
+      ''
+    end
+  end
+  
+  def destination_neighbourhood_name=(name)
+    unless name.blank?
+      if neighbourhood = Neighbourhood.find(:first, :conditions => {:name => name.split('/')[0], :category => name.split('/')[1]})
+        self.destination_neighbourhood_id = neighbourhood.id
       end
     end
   end

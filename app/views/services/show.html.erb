@@ -75,30 +75,37 @@
 	  </div>
 		<div class="clear"></div>
 	</fieldset>
-	<fieldset>
+	<fieldset class="left" style="width: 200px">
 		<legend>Ubicaci&oacute;n</legend>
-		<div class="left">
-			<p>
-				<strong>Estado</strong><br />
-		    <%= @service.location_state.name %>
-			</p>
-			<p>
-				<strong>Municipio</strong><br />
-		    <%= @service.location_county_name %>
-			</p>
-		</div>
-		<div class="left">
-			<p>
-				<strong>Estado</strong><br />
-		    <%= @service.destination_state.name %>
-			</p>
-			<p>
-				<strong>Municipio</strong><br />
-		    <%= @service.destination_county_name %>
-			</p>
-		</div>
-		<div class="clear"></div>
+		<p>
+			<strong>Estado</strong><br />
+	    <%= @service.location_state.name %>
+		</p>
+		<p>
+			<strong>Municipio</strong><br />
+	    <%= @service.location_county_name %>
+		</p>
+		<p>
+			<strong>Colonia</strong><br />
+	    <%= @service.location_neighbourhood_name %>
+		</p>
 	</fieldset>
+	<fieldset class="left" style="width: 200px">
+		<legend>Destino</legend>
+		<p>
+			<strong>Estado</strong><br />
+	    <%= @service.destination_state.name %>
+		</p>
+		<p>
+			<strong>Municipio</strong><br />
+	    <%= @service.destination_county_name %>
+		</p>
+		<p>
+			<strong>Colonia</strong><br />
+	    <%= @service.destination_neighbourhood_name %>
+		</p>
+	</fieldset>
+	<div class="clear"></div>
 	<fieldset>
     <legend>Observaciones</legend>
     <%= @service.references %>
